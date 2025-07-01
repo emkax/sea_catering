@@ -1,0 +1,233 @@
+.nav_menu {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 2rem;
+}
+
+/* Flex container inside navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo styles */
+.nav_logo {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav_logo:hover {
+  transform: scale(1.05);
+}
+
+.logo_text {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Navigation links */
+.nav_menu ul,
+.ul_style {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.nav_item {
+  margin: 0;
+}
+
+.nav_link {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+}
+
+.nav_link:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Active nav style */
+.active_page .nav_link {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ✅ Authentication section styles */
+.auth_section {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Authentication button styles */
+.auth_button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.auth_button:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Profile button styles */
+.profile_button {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.profile_button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px) scale(1.1);
+}
+
+.profile_icon {
+  transition: all 0.3s ease;
+}
+
+.profile_button:hover .profile_icon {
+  color: #667eea;
+}
+
+/* ✅ Logout button styles */
+.logout_button {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  backdrop-filter: blur(5px);
+}
+
+.logout_button:hover {
+  background: rgba(255, 107, 107, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+/* ✅ Responsive adjustments for auth section */
+@media (max-width: 768px) {
+  .nav_menu {
+    padding: 0 1rem;
+  }
+  
+  .navbar {
+    flex-direction: column;
+    min-height: auto;
+    padding: 1rem 0;
+  }
+  
+  .logo_text {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .ul_style {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav_link,
+  .auth_button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .auth_section {
+    gap: 0.5rem;
+  }
+  
+  .logout_button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+  
+  .logo_text {
+    font-size: 1.3rem;
+  }
+  
+  .ul_style {
+    gap: 0.5rem;
+  }
+  
+  .nav_link,
+  .auth_button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .auth_button {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .profile_button {
+    padding: 0.4rem;
+  }
+  
+  .logout_button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  
+  .auth_section {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

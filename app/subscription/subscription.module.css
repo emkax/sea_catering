@@ -1,0 +1,398 @@
+/* subscription.module.css */
+
+.subscription_container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Arial', sans-serif;
+}
+
+
+
+.main_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 2rem;
+}
+
+.subscription_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  margin-top: 5%;
+}
+
+.welcome_section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.welcome_content {
+  width: 100%;
+}
+
+.welcome_title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.welcome_subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.feature_highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feature_item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.feature_icon {
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+}
+
+.form_section {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.form_container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.form_header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form_icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.form_title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.form_subtitle {
+  color: #666;
+  font-size: 1rem;
+}
+
+.subscription_form {
+  margin-top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form_label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form_input,
+.form_select,
+.form_textarea {
+  padding: 0.875rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  font-family: inherit;
+}
+
+.form_input:focus,
+.form_select:focus,
+.form_textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.1);
+}
+
+.form_select {
+  cursor: pointer;
+}
+
+.form_textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.checkbox_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  border: 1px solid #e1e5e9;
+}
+
+.checkbox_item:hover {
+  background: #e9ecef;
+  transform: translateY(-1px);
+}
+
+.checkbox_item input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.checkbox_text {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.form_note {
+  color: #666;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+.submit_btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit_btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.submit_btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit_btn:active {
+  transform: translateY(0);
+}
+
+/* Modal Styles */
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.modal_content {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  animation: modalSlideIn 0.3s ease forwards;
+}
+
+@keyframes modalSlideIn {
+  to {
+    transform: scale(1);
+  }
+}
+
+.modal_icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.modal_title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.modal_price {
+  font-size: 1.3rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.modal_message {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.modal_button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.modal_button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .subscription_wrapper {
+    grid-template-columns: 1fr;
+    max-height: none;
+  }
+  
+  .welcome_section {
+    padding: 2rem;
+  }
+  
+  .welcome_title {
+    font-size: 2rem;
+  }
+  
+  .form_section {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .nav_menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .main_content {
+    padding:2rem;
+    padding-top: 10rem;
+  }
+
+  .welcome_section,
+  .form_section {
+    padding: 1.5rem;
+  }
+  
+  .welcome_title {
+    font-size: 1.8rem;
+  }
+  
+  .checkbox_grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal_content {
+    margin: 1rem;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo_text {
+    font-size: 1.2rem;
+  }
+  
+  .nav_link {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .welcome_title {
+    font-size: 1.5rem;
+  }
+  
+  .form_title {
+    font-size: 1.5rem;
+  }
+  
+  .form_icon {
+    font-size: 3rem;
+  }
+}

@@ -1,54 +1,36 @@
-'use server';
+import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+import { supabase } from "../lib/supabaseClient";
 
-import { supabase } from '../lib/supabaseClient';
-import { NextResponse } from 'next/server';
-import bcrypt from 'bcrypt';
-
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { email, password, rememberMe } = body;
-    
 
-    if (!email || !password) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
-    }
-
-    // ✅ Fetch the user by email (expecting a single match)
+    // Get user by email
     const { data: user, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
+      .from("users")
+      .select("*")
+      .eq("email", email)
       .single();
 
-    // ✅ If email not found
     if (error || !user) {
-      return NextResponse.json({ state: null }); // email does not exist
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     }
 
-    // ✅ Compare the hashed password
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return NextResponse.json({ state: false , err : user.password,password}); // wrong password
+    // Compare password
+    const isValid = await bcrypt.compare(password, user.passwordHash);
+    if (!isValid) {
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     }
 
-    // ✅ Success: set cookie
-    const response = NextResponse.json({ state: true });
-    response.cookies.set({
-      name: 'user',
-      value: email,
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      ...(rememberMe && { maxAge: 60 * 60 * 24 }), // 1 day
-    });
-
-    return response;
-
-  } catch (error) {
-    console.error('Server error:', error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    // Example session payload
+    return NextResponse.json(
+      { success: true, user: { id: user.id, email: user.email }, rememberMe },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Login error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

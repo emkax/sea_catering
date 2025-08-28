@@ -1,6 +1,7 @@
 'use server';
 
 import { supabase } from '../lib/supabaseClient';
+import { NextRequest, NextResponse } from 'next/server';
 
 async function fetchMenu() {
   const { data, error } = await supabase.from('menu').select('*');
@@ -13,16 +14,11 @@ async function fetchMenu() {
   return data;
 }
 
-export async function GET(request) {
+export async function GET(request: NextRequest) {
   const menuData = await fetchMenu();
 
-  return new Response(
-    JSON.stringify({
-      payload: menuData,
-    }),
-    {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    }
+  return NextResponse.json(
+    { payload: menuData },
+    { status: 200 }
   );
 }

@@ -1,20 +1,18 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { NextResponse } from 'next/server';
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function GET() {
-  const cookieStore = await cookies(); // ✅ Add await for Next.js 15+
-  const user = cookieStore.get('user');
+  const cookieStore = await cookies(); // ✅ async in Next.js 15+
+  const user = cookieStore.get("user");
 
-  console.log('All cookies:', cookieStore.getAll());
-  console.log('User cookie:', user);
+  console.log("All cookies:", cookieStore.getAll());
+  console.log("User cookie:", user);
 
   if (!user) {
-    return NextResponse.json({status:400 , valid:false});
+    return NextResponse.json({ valid: false }, { status: 400 });
   }
 
   console.log("User authenticated, showing subscription page");
-  
-  // Pass the user session info to the client component
-  return NextResponse.json({status:200,valid:true});
+
+  return NextResponse.json({ valid: true }, { status: 200 });
 }

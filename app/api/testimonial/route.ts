@@ -1,53 +1,61 @@
-'use server';
+"use server";
 
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from "../lib/supabaseClient";
+import { NextRequest, NextResponse } from "next/server";
 
 async function fetchTestimonial() {
-  const { data, error } = await supabase.from('testimonial').select('*');
+  const { data, error } = await supabase.from("testimonial").select("*");
+
   if (error) {
     console.error("Error fetching testimonial:", error);
     return [];
   }
-  return data;
+
+  return data ?? [];
 }
 
-export async function GET(request) {
+export async function GET(request: NextRequest) {
   const testimonial = await fetchTestimonial();
-  return new Response(JSON.stringify({ payload: testimonial }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+
+  return NextResponse.json(
+    { payload: testimonial },
+    { status: 200 }
+  );
 }
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { name, message, rating } = body;
 
     if (!name || !message || !rating) {
-      return new Response(JSON.stringify({ error: "Missing fields" }), {
-        status: 400,
-      });
+      return NextResponse.json(
+        { error: "Missing fields" },
+        { status: 400 }
+      );
     }
 
     const { data, error } = await supabase
-      .from('testimonial')
+      .from("testimonial")
       .insert([{ name, message, rating }]);
 
     if (error) {
       console.error("Supabase insert error:", error.message);
-      return new Response(JSON.stringify({ error: error.message }), {
-        status: 500,
-      });
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      );
     }
 
-    return new Response(JSON.stringify({ success: true, data }), {
-      status: 200,
-    });
+    return NextResponse.json(
+      { success: true, data },
+      { status: 201 } // 201 Created
+    );
   } catch (err) {
     console.error("Unexpected error:", err);
-    return new Response(JSON.stringify({ error: "Server error" }), {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: "Server error" },
+      { status: 500 }
+    );
   }
 }

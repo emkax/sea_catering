@@ -8,10 +8,10 @@ async function fetchTestimonial() {
 
   if (error) {
     console.error("Error fetching testimonial:", error);
-    return [];
+    return NextResponse.json({ payload: [] }, { status: 200 });
   }
 
-  return data ?? [];
+  return data ?? NextResponse.json({ payload: [] }, { status: 200 });;
 }
 
 export async function GET(request: NextRequest) {

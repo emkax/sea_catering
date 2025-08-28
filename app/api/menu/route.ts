@@ -8,7 +8,7 @@ async function fetchMenu() {
 
   if (error) {
     console.error("Error fetching menu:", error);
-    return [];
+    return NextResponse.json({ payload: [] }, { status: 200 });
   }
 
   return data;
